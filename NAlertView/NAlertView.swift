@@ -93,14 +93,17 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
     private let kBGTransparency: CGFloat = 0.43
     private let kVerticalGap: CGFloat = 15.0
     private let kWidthMargin: CGFloat = 20.0
+    private let kCancelButtonSpace: CGFloat = 4.0
+    private let kCancelButtonMargin: CGFloat = 7.0
     private let kHeightMargin: CGFloat = 15.0
     private let kContentWidth: CGFloat = 270.0
     private let kContentHeightMargin: CGFloat = 20.0
     private let kTitleLines: Int = 3
     private let kButtonBaseTag: Int = 100
     private let kButtonHoriSpace: CGFloat = 5.0
+    private let kButtonVertSpace: CGFloat = 5.0
     private var titleLabelSpace: CGFloat = 0.0
-    private let separatorSpace: CGFloat = 10.0
+    private var separatorSpace: CGFloat = 10.0
     private var messageTextViewSpace: CGFloat = 0.0
     private var buttonsOrientation: ButtonsOrientation = .Horizontal
     
@@ -147,10 +150,10 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
             constraint.priority = UILayoutPriorityDefaultHigh
         }
         self.view.addConstraints(heightConstraints)
-
+        
         self.view.addConstraint(NSLayoutConstraint(item: contentView, attribute: .Leading , relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 20))
         self.view.addConstraint(NSLayoutConstraint(item: view, attribute: .Trailing , relatedBy: .Equal, toItem: contentView, attribute: .Trailing, multiplier: 1.0, constant: 20))
-
+        
         self.view.addConstraint(NSLayoutConstraint(item: contentView, attribute: .CenterY, relatedBy: .Equal, toItem: self.view, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
     }
     
@@ -174,7 +177,8 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
                     
                     if button != firstButton {
                         if let previousBtn = previousButton {
-                            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[previousButton]-space-[button]", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["space": kButtonHoriSpace], views: ["previousButton": previousBtn, "button": button]))
+                            let buttonSpace = kButtonVertSpace
+                            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[previousButton]-space-[button]", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["space": buttonSpace], views: ["previousButton": previousBtn, "button": button]))
                         }
                     }
                     
@@ -184,8 +188,15 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
             
             contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-margin-[label]-titleSpaceUp-[separatorView]-titleSpaceDown-[textView]-textViewSpace-[button]", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["margin": kHeightMargin, "titleSpaceUp": titleLabelSpace, "titleSpaceDown": separatorSpace, "textViewSpace": messageTextViewSpace], views: ["label": titleLabel, "separatorView": separatorView, "textView": messageLabel, "button": firstButton]))
             
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[button]-margin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["margin": kWidthMargin], views: ["button": lastButton]))
+            let lastButtonMargin = kWidthMargin
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[button]-margin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["margin": lastButtonMargin], views: ["button": lastButton]))
         } else {
+            
+            // in case that title is nil the spaces should be the same
+            if titleLabel.text == nil {
+                separatorSpace = titleLabelSpace
+            }
+            
             contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-margin-[label]-titleSpaceUp-[separatorView]-titleSpaceDown-[textView]-margin-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["margin": kHeightMargin, "titleSpaceUp": titleLabelSpace, "titleSpaceDown": separatorSpace], views: ["label": titleLabel, "separatorView": separatorView, "textView": messageLabel]))
         }
         
@@ -206,17 +217,22 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
         
         if let aTitle = title where aTitle.isEmpty == false {
             titleLabelSpace = kVerticalGap
+            
+            separatorView.backgroundColor = NAlertView.separationColor
+        }else {
+            
+            
         }
         
         separatorView.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.backgroundColor = NAlertView.separationColor
+        
         contentView.addSubview(separatorView)
         
         // Separator height constraint
         separatorView.addConstraint(NSLayoutConstraint(item: separatorView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1.0, constant: 1))
     }
     
-    private func setupMessageTextView(message: String?) {
+    private func setupMessage(message: String?) {
         
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.textAlignment = NAlertView.messageAlign
@@ -252,14 +268,17 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
         
         switch alertButton.type {
         case .Accept:
+            button.accessibilityValue = AlertButton.ButtonType.Accept.rawValue
             button.setTitleColor(NAlertView.buttonAcceptTitleColor, forState: .Normal)
             button.setBackgroundImage(NAlertView.buttonAcceptBGColor.image(), forState: .Normal)
             button.setBackgroundImage((NAlertView.buttonAcceptBGColor).darkerColor().image(), forState: .Highlighted)
         case .Cancel:
+            button.accessibilityValue = AlertButton.ButtonType.Cancel.rawValue
             button.setTitleColor(NAlertView.buttonCancelTitleColor, forState: .Normal)
             button.setBackgroundImage(NAlertView.buttonCancelBGColor.image(), forState: .Normal)
             button.setBackgroundImage((NAlertView.buttonCancelBGColor).darkerColor().image(), forState: .Highlighted)
         case .Default:
+            button.accessibilityValue = AlertButton.ButtonType.Default.rawValue
             button.setTitleColor(NAlertView.buttonDefaultTitleColor, forState: .Normal)
             button.setBackgroundImage(NAlertView.buttonDefaultBGColor.image(), forState: .Normal)
             button.setBackgroundImage((NAlertView.buttonDefaultBGColor).darkerColor().image(), forState: .Highlighted)
@@ -269,7 +288,8 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
         button.addTarget(self, action: #selector(NAlertView.pressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         //Height constraints
-        button.addConstraint(NSLayoutConstraint(item: button, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1.0, constant: CGFloat(NAlertView.buttonHeight)))
+        let buttonHeight = NAlertView.buttonHeight
+        button.addConstraint(NSLayoutConstraint(item: button, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1.0, constant: CGFloat(buttonHeight)))
         
         return button
     }
@@ -309,6 +329,24 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    func dismissAlert(completion: ()->()) {
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+            self.view.alpha = 0.0
+        }) { (Bool) -> Void in
+            
+            self.contentView.removeFromSuperview()
+            self.contentView = UIView()
+            
+            self.view.removeFromSuperview()
+            
+            //Releasing strong refrence of itself.
+            self.strongSelf = nil
+            
+            completion()
+        }
+        
+    }
     private func animateAlert() {
         
         view.alpha = 0
@@ -332,7 +370,6 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
      - parameter title:             The title of the alert.
      - parameter message:           The message of the alert.
      - parameter buttons:           An array of AlertButton that contains the title and the style of each button
-     - parameter target:            The UIViewController which will present the SGAlert
      - parameter completion:        The completion function to be executed after having tapped a button.
      
      If an alerts need to be shown while another alert is displayed, the second one will appear after having closed the first one.
@@ -351,7 +388,7 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
-        
+    
     private static func showNext() {
         
         isAlertShown = true
@@ -365,39 +402,44 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
             isAlertShown = false
         }
     }
-
-    public func show(title title: String?, message: String?, buttons: [AlertButton], buttonsOrientation: ButtonsOrientation = .Horizontal, action: UserAction? = nil) {
+    
+    public func show(title title: String? = nil, message: String?, buttons: [AlertButton], buttonsOrientation: ButtonsOrientation = .Horizontal, dismiss:Bool = true, action: UserAction? = nil) -> NAlertView? {
         
         let window: UIWindow = UIApplication.sharedApplication().keyWindow!
         window.addSubview(view)
         window.bringSubviewToFront(view)
         view.frame = window.bounds
         
-        // Add tap recognizer to the background
+        // background
         let viewBackground = UIView()
         viewBackground.backgroundColor = UIColor.clearColor()
         viewBackground.frame = view.frame
         view.addSubview(viewBackground)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(NAlertView.backgroundTapped(_:)))
-        tap.delegate = self
-        viewBackground.addGestureRecognizer(tap)
+        if dismiss {
+            // Add tap recognizer to the background
+            let tap = UITapGestureRecognizer(target: self, action: #selector(NAlertView.backgroundTapped(_:)))
+            tap.delegate = self
+            viewBackground.addGestureRecognizer(tap)
+        }
         
         // Setup alert
         self.buttonsOrientation = buttonsOrientation
         self.userAction = action
         setupContentView()
         setupTitleLabel(title)
-        setupMessageTextView(message)
+        setupMessage(message)
         setupButtons(buttons)
         addContentSubviewConstraints()
         
         // Show alert
         animateAlert()
+        
+        return self.strongSelf
     }
 }
 
 public struct AlertButton {
-    enum ButtonType {
+    enum ButtonType: String {
         case Default
         case Accept
         case Cancel
@@ -406,9 +448,21 @@ public struct AlertButton {
     var title: String
     var type: ButtonType
     
-    init(title: String, type: ButtonType) {
-        self.title = title
-        self.type = type        
+    init(title: String? = nil, type: ButtonType) {
+        if let tit = title {
+            self.title = tit
+        } else {
+            switch type {
+            case .Accept:
+                self.title = NSLocalizedString("accept", comment: "Accept")
+            case .Cancel:
+                self.title = NSLocalizedString("cancel", comment: "Cancel")
+            case .Default:
+                self.title = NSLocalizedString("OK", comment: "OK")
+            }
+        }
+        
+        self.type = type
     }
 }
 

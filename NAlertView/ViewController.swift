@@ -48,6 +48,28 @@ class ViewController: UIViewController {
                                         AlertButton.init(title: "Second Button", type: .Cancel)])
     }
     
+    @IBAction func showFourAlert(sender: AnyObject) {
+        applyAlertTheme4()
+        
+        NAlertView.showAlertInQueue(title: "Alert with completion block",
+                                    message: "Some text here",
+                                    buttons: [
+                                        AlertButton.init(title: "First button", type: .Default),
+                                        AlertButton.init(title: "Second Button", type: .Default),
+                                        AlertButton.init(type: .Cancel)]) { (btnPressed) in
+                                            switch btnPressed {
+                                            case 0:
+                                                print("first button tapped")
+                                            case 1:
+                                                print("second button tapped")
+                                            case 2:
+                                                print("third button tapped")
+                                            default:
+                                                break
+                                            }
+        }
+    }
+    
     func applyAlertTheme1() {
         NAlertView.cornerRadius             = 4
         NAlertView.titleFont                = UIFont.systemFontOfSize(22)
@@ -101,6 +123,23 @@ class ViewController: UIViewController {
         NAlertView.buttonAcceptBGColor     = UIColor.blackColor()
         NAlertView.buttonCancelTitleColor  = UIColor.blueColor()
         NAlertView.buttonCancelBGColor     = UIColor.clearColor()
+    }
+    
+    func applyAlertTheme4() {
+        NAlertView.titleFont               = UIFont.init(name: "Verdana", size: 20)!
+        NAlertView.titleColor              = UIColor.blueColor()
+        NAlertView.titleAlign              = NSTextAlignment.Center
+        NAlertView.messageFont             = UIFont.init(name: "Verdana", size: 16)!
+        NAlertView.messageColor            = UIColor.blueColor()
+        NAlertView.messageAlign            = NSTextAlignment.Center
+        NAlertView.buttonCornerRadius      = 25
+        NAlertView.buttonFont              = UIFont.init(name: "Verdana", size: 16)!
+        NAlertView.buttonDefaultTitleColor = UIColor.whiteColor()
+        NAlertView.buttonDefaultBGColor    = UIColor.blueColor()
+        NAlertView.buttonAcceptTitleColor  = UIColor.redColor()
+        NAlertView.buttonAcceptBGColor     = UIColor.blueColor()
+        NAlertView.buttonCancelTitleColor  = UIColor.whiteColor()
+        NAlertView.buttonCancelBGColor     = UIColor.blueColor()
     }
 }
 

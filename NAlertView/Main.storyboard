@@ -20,39 +20,34 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lsj-UH-5mb">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="194"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="145"/>
                                         <state key="normal" title="First Alert"/>
                                         <connections>
                                             <action selector="showFirstAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="boc-Ke-usG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IS-au-XYf">
-                                        <rect key="frame" x="0.0" y="194" width="600" height="193"/>
+                                        <rect key="frame" x="0.0" y="145" width="600" height="145"/>
                                         <state key="normal" title="Second Alert"/>
                                         <connections>
                                             <action selector="showSecondAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xF6-1F-Q5l"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-fy-rTd">
-                                        <rect key="frame" x="0.0" y="387" width="600" height="194"/>
+                                        <rect key="frame" x="0.0" y="290" width="600" height="145"/>
                                         <state key="normal" title="Third Alert"/>
                                         <connections>
                                             <action selector="showThirdAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Upf-du-epD"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDx-KD-abW">
+                                        <rect key="frame" x="0.0" y="435" width="600" height="145"/>
+                                        <state key="normal" title="Four Alert"/>
+                                        <connections>
+                                            <action selector="showFourAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVd-zN-Zr3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="3IS-au-XYf" secondAttribute="trailing" id="0tp-17-cF9"/>
-                                    <constraint firstItem="Lsj-UH-5mb" firstAttribute="leading" secondItem="bNs-hk-92N" secondAttribute="leading" id="96E-QQ-FwS"/>
-                                    <constraint firstAttribute="trailing" secondItem="P2a-fy-rTd" secondAttribute="trailing" id="9Cf-VD-ZW4"/>
-                                    <constraint firstAttribute="bottom" secondItem="P2a-fy-rTd" secondAttribute="bottom" id="Feg-Pm-gXO"/>
-                                    <constraint firstItem="3IS-au-XYf" firstAttribute="leading" secondItem="bNs-hk-92N" secondAttribute="leading" id="If5-aY-aCR"/>
-                                    <constraint firstItem="P2a-fy-rTd" firstAttribute="leading" secondItem="bNs-hk-92N" secondAttribute="leading" id="KeO-r2-MmX"/>
-                                    <constraint firstItem="Lsj-UH-5mb" firstAttribute="top" secondItem="bNs-hk-92N" secondAttribute="top" id="Pc6-YH-Gsh"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lsj-UH-5mb" secondAttribute="trailing" id="V8M-IJ-p3q"/>
-                                    <constraint firstItem="P2a-fy-rTd" firstAttribute="top" secondItem="3IS-au-XYf" secondAttribute="bottom" id="WBn-ew-ckI"/>
-                                    <constraint firstItem="3IS-au-XYf" firstAttribute="top" secondItem="Lsj-UH-5mb" secondAttribute="bottom" id="cSS-yf-jiO"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
