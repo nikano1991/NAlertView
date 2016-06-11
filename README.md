@@ -5,7 +5,11 @@ It is inspired by the [CPAlertViewController](https://github.com/cp3hnu/CPAlertV
 
 ## Examples
 
-![](Screenshots/01.png =100x) ![](Screenshots/02.png =100x) ![](Screenshots/03.png =100x) ![](Screenshots/04.png =100x) ![](Screenshots/05.png =100x)
+<img src="Screenshots/01.png" width="100">
+<img src="Screenshots/02.png" width="100">
+<img src="Screenshots/03.png" width="100">
+<img src="Screenshots/04.png" width="100">
+<img src="Screenshots/05.png" width="100">
 
 ## Installation
 
