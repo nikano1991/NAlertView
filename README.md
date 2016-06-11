@@ -1,13 +1,13 @@
 # NAlertView
-NAlertView is a highly customizable *Alert View Controller* written in *Swift*.
+NAlertView is a highly customizable **Alert View Controller** written in **Swift**.
 
 It is inspired by the [CPAlertViewController](https://github.com/cp3hnu/CPAlertViewController). It has been modified in order to make it more customizable.
 
 ## Examples
 
-![](01.png)
-![](02.png)
-![](03.png)
+![](Screenshots/01.png)
+![](Screenshots/02.png)
+![](Screenshots/03.png)
 
 ## Installation
 
@@ -23,78 +23,76 @@ Coming soon :)
 
 The usage of the Alert is very simple. First of all you need to configure how do you like your Alert to look like. In order to do this I strongly recomment to have a class (somewhere) named `Theam` with a method `applyAlertTheam()`. This method could look like this:
 
-	``` swift
-	public class Theme {
-	    static func applyAlertTheme() {
-	        GOGOAlert.titleFont               = Globals.font(Globals.GOGOFont.kelsonBold, size: 16)!
-	        GOGOAlert.titleColor              = GOGOColor.blackCancelColor()
-	        GOGOAlert.titleAlign              = NSTextAlignment.Left
-	        GOGOAlert.messageFont             = Globals.font(Globals.GOGOFont.verdana, size: 14)!
-	        GOGOAlert.messageColor            = GOGOColor.brownishGrey()
-	        GOGOAlert.messageAlign            = NSTextAlignment.Left
-	        GOGOAlert.buttonCornerRadius      = 3
-	        GOGOAlert.buttonFont              = Globals.font(Globals.GOGOFont.verdana, size: 16)!
-	        GOGOAlert.buttonDefaultTitleColor = GOGOColor.giaSunYellowColor()
-	        GOGOAlert.buttonDefaultBGColor    = GOGOColor.tealBlue()
-	        GOGOAlert.buttonAcceptTitleColor  = GOGOColor.tealBlue()
-	        GOGOAlert.buttonAcceptBGColor     = GOGOColor.giaSunYellowColor()
-	        GOGOAlert.buttonCancelTitleColor  = GOGOColor.giaDeepSeaBlueColor()
-	        GOGOAlert.buttonCancelBGColor     = UIColor.clearColor()
-	        GOGOAlert.buttonShadow            = 1
-	    }
-	}
-	```
-
+``` swift
+public class Theme {
+    static func applyAlertTheme() {
+        GOGOAlert.titleFont               = Globals.font(Globals.GOGOFont.kelsonBold, size: 16)!
+        GOGOAlert.titleColor              = GOGOColor.blackCancelColor()
+        GOGOAlert.titleAlign              = NSTextAlignment.Left
+        GOGOAlert.messageFont             = Globals.font(Globals.GOGOFont.verdana, size: 14)!
+        GOGOAlert.messageColor            = GOGOColor.brownishGrey()
+        GOGOAlert.messageAlign            = NSTextAlignment.Left
+        GOGOAlert.buttonCornerRadius      = 3
+        GOGOAlert.buttonFont              = Globals.font(Globals.GOGOFont.verdana, size: 16)!
+        GOGOAlert.buttonDefaultTitleColor = GOGOColor.giaSunYellowColor()
+        GOGOAlert.buttonDefaultBGColor    = GOGOColor.tealBlue()
+        GOGOAlert.buttonAcceptTitleColor  = GOGOColor.tealBlue()
+        GOGOAlert.buttonAcceptBGColor     = GOGOColor.giaSunYellowColor()
+        GOGOAlert.buttonCancelTitleColor  = GOGOColor.giaDeepSeaBlueColor()
+        GOGOAlert.buttonCancelBGColor     = UIColor.clearColor()
+        GOGOAlert.buttonShadow            = 1
+    }
+}
+```
 Then, this method should be called once in your AppDelegate, this way the theme that you have configured will be automatically applied to all the Alerts of your APP.
 
-	``` swift
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+``` swift
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        Theme.applyAlertTheme()
-        
-        return true
-    }
-    ```
+    Theme.applyAlertTheme()
+    
+    return true
+}
+````
 
 To show the alert you just have to call `NAlertView().showAlertInQueue` or `NAlertView().show` depending on weather or not you want to use the queue feature.
 
-	``` swift
-	NAlertView.showAlertInQueue(title: "First Alert",
-                                    message: "It has some text in it",
-                                    buttons: [AlertButton.init(title: "First Button", type: .Default)])
-	```
-	or
-	``` swift
-	NAlertView.show(title: "First Alert",
-                        message: "It has some text in it",
-                        buttons: [AlertButton.init(title: "First Button", type: .Default)])
-	```
+``` swift
+NAlertView.showAlertInQueue(title: "First Alert",
+                                message: "It has some text in it",
+                                buttons: [AlertButton.init(title: "First Button", type: .Default)])
+```
+or
+``` swift
+NAlertView.show(title: "First Alert",
+                    message: "It has some text in it",
+                    buttons: [AlertButton.init(title: "First Button", type: .Default)])
+```
 
 Actions after tapping a button of the alert can be done with a completion block:
 
-	``` swift
-	NAlertView.showAlertInQueue(title: "Alert with completion block",
-                                 message: "Some text here",
-                                 buttons: [
-                                 	AlertButton.init(title: "First button", type: .Default),
-                                    AlertButton.init(title: "Second Button", type: .Default),
-                                    AlertButton.init(type: .Cancel)]) { (btnPressed) in
-                                    switch btnPressed {
-                                    case 0:
-                                        print("first button tapped")
-                                    case 1:
-                                        print("second button tapped")
-                                    default:
-                                        break
-                                    }
-    }
-    ``
-
+``` swift
+NAlertView.showAlertInQueue(title: "Alert with completion block",
+                             message: "Some text here",
+                             buttons: [
+                             	AlertButton.init(title: "First button", type: .Default),
+                                AlertButton.init(title: "Second Button", type: .Default),
+                                AlertButton.init(type: .Cancel)]) { (btnPressed) in
+                                switch btnPressed {
+                                case 0:
+                                    print("first button tapped")
+                                case 1:
+                                    print("second button tapped")
+                                default:
+                                    break
+                                }
+}
+```
 
 ### Customizable properties
 	Here there is the list of all the properties than can be customized.
 
-	``` swift
+``` swift
 	/// The corner radious of the view
     public static var cornerRadius: Float = 4
     
@@ -148,8 +146,7 @@ Actions after tapping a button of the alert can be done with a completion block:
     
     /// The shadow of the button
     public static var buttonShadow: Float = 0
-	```
-
+```
 
 ### Features
 
@@ -164,7 +161,7 @@ Actions after tapping a button of the alert can be done with a completion block:
 
 ### Roadmap
 
-* [Cocoapods](Documentation/CocoaPods.md)
+* Make library available on [Cocoapods](Documentation/CocoaPods.md)
 
 ### License
 
