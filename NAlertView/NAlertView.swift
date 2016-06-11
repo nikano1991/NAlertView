@@ -347,7 +347,9 @@ public class NAlertView: UIViewController, UIGestureRecognizerDelegate {
         }
         
     }
-    private func animateAlert() {
+    
+    /// Override this method to customize the animation of showing the alert view
+    public func animateAlert() {
         
         view.alpha = 0
         UIView.animateWithDuration(0.2, animations: { () -> Void in

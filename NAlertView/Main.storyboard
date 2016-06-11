@@ -20,31 +20,38 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lsj-UH-5mb">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="145"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
                                         <state key="normal" title="First Alert"/>
                                         <connections>
                                             <action selector="showFirstAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="boc-Ke-usG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IS-au-XYf">
-                                        <rect key="frame" x="0.0" y="145" width="600" height="145"/>
+                                        <rect key="frame" x="0.0" y="116" width="600" height="116"/>
                                         <state key="normal" title="Second Alert"/>
                                         <connections>
                                             <action selector="showSecondAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xF6-1F-Q5l"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2a-fy-rTd">
-                                        <rect key="frame" x="0.0" y="290" width="600" height="145"/>
+                                        <rect key="frame" x="0.0" y="232" width="600" height="116"/>
                                         <state key="normal" title="Third Alert"/>
                                         <connections>
                                             <action selector="showThirdAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Upf-du-epD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDx-KD-abW">
-                                        <rect key="frame" x="0.0" y="435" width="600" height="145"/>
+                                        <rect key="frame" x="0.0" y="348" width="600" height="116"/>
                                         <state key="normal" title="Four Alert"/>
                                         <connections>
                                             <action selector="showFourAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVd-zN-Zr3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzO-Ot-5Ck">
+                                        <rect key="frame" x="0.0" y="464" width="600" height="116"/>
+                                        <state key="normal" title="Five Alert"/>
+                                        <connections>
+                                            <action selector="showFiveAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xXn-EZ-P73"/>
                                         </connections>
                                     </button>
                                 </subviews>

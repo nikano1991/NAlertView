@@ -54,9 +54,9 @@ class ViewController: UIViewController {
         NAlertView.showAlertInQueue(title: "Alert with completion block",
                                     message: "Some text here",
                                     buttons: [
-                                        AlertButton.init(title: "First button", type: .Default),
+                                        AlertButton.init(title: "First Button", type: .Default),
                                         AlertButton.init(title: "Second Button", type: .Default),
-                                        AlertButton.init(type: .Cancel)]) { (btnPressed) in
+                                        AlertButton.init(title: "Third Button", type: .Cancel)]) { (btnPressed) in
                                             switch btnPressed {
                                             case 0:
                                                 print("first button tapped")
@@ -68,6 +68,17 @@ class ViewController: UIViewController {
                                                 break
                                             }
         }
+    }
+    
+    @IBAction func showFiveAlert(sender: AnyObject) {
+        applyAlertTheme5()
+        
+        NAlertView.showAlertInQueue(title: nil,
+                                    message: "Some text here",
+                                    buttons: [
+                                        AlertButton.init(title: "First Button", type: .Default),
+                                        AlertButton.init(title: "Second Button", type: .Default),
+                                        AlertButton.init(title: "Third Button", type: .Cancel)])
     }
     
     func applyAlertTheme1() {
@@ -104,25 +115,25 @@ class ViewController: UIViewController {
         NAlertView.buttonDefaultBGColor    = UIColor.blackColor()
         NAlertView.buttonAcceptTitleColor  = UIColor.redColor()
         NAlertView.buttonAcceptBGColor     = UIColor.blackColor()
-        NAlertView.buttonCancelTitleColor  = UIColor.blueColor()
-        NAlertView.buttonCancelBGColor     = UIColor.clearColor()
+        NAlertView.buttonCancelTitleColor  = UIColor.blackColor()
+        NAlertView.buttonCancelBGColor     = UIColor.redColor()
     }
     
     func applyAlertTheme3() {
         NAlertView.titleFont               = UIFont.init(name: "Verdana", size: 20)!
-        NAlertView.titleColor              = UIColor.redColor()
+        NAlertView.titleColor              = UIColor.blackColor()
         NAlertView.titleAlign              = NSTextAlignment.Right
         NAlertView.messageFont             = UIFont.init(name: "Verdana", size: 16)!
-        NAlertView.messageColor            = UIColor.redColor()
+        NAlertView.messageColor            = UIColor.blackColor()
         NAlertView.messageAlign            = NSTextAlignment.Right
         NAlertView.buttonCornerRadius      = 3
         NAlertView.buttonFont              = UIFont.init(name: "Verdana", size: 16)!
-        NAlertView.buttonDefaultTitleColor = UIColor.redColor()
-        NAlertView.buttonDefaultBGColor    = UIColor.blackColor()
-        NAlertView.buttonAcceptTitleColor  = UIColor.redColor()
-        NAlertView.buttonAcceptBGColor     = UIColor.blackColor()
+        NAlertView.buttonDefaultTitleColor = UIColor.blueColor()
+        NAlertView.buttonDefaultBGColor    = UIColor.yellowColor()
+        NAlertView.buttonAcceptTitleColor  = UIColor.blueColor()
+        NAlertView.buttonAcceptBGColor     = UIColor.yellowColor()
         NAlertView.buttonCancelTitleColor  = UIColor.blueColor()
-        NAlertView.buttonCancelBGColor     = UIColor.clearColor()
+        NAlertView.buttonCancelBGColor     = UIColor.yellowColor()
     }
     
     func applyAlertTheme4() {
@@ -140,6 +151,23 @@ class ViewController: UIViewController {
         NAlertView.buttonAcceptBGColor     = UIColor.blueColor()
         NAlertView.buttonCancelTitleColor  = UIColor.whiteColor()
         NAlertView.buttonCancelBGColor     = UIColor.blueColor()
+    }
+    
+    func applyAlertTheme5() {
+        NAlertView.titleFont               = UIFont.init(name: "Verdana", size: 20)!
+        NAlertView.titleColor              = UIColor.blackColor()
+        NAlertView.titleAlign              = NSTextAlignment.Center
+        NAlertView.messageFont             = UIFont.init(name: "Verdana", size: 16)!
+        NAlertView.messageColor            = UIColor.blackColor()
+        NAlertView.messageAlign            = NSTextAlignment.Center
+        NAlertView.buttonCornerRadius      = 25
+        NAlertView.buttonFont              = UIFont.init(name: "Verdana", size: 16)!
+        NAlertView.buttonDefaultTitleColor = UIColor.blackColor()
+        NAlertView.buttonDefaultBGColor    = UIColor.greenColor()
+        NAlertView.buttonAcceptTitleColor  = UIColor.blackColor()
+        NAlertView.buttonAcceptBGColor     = UIColor.greenColor()
+        NAlertView.buttonCancelTitleColor  = UIColor.blackColor()
+        NAlertView.buttonCancelBGColor     = UIColor.greenColor()
     }
 }
 

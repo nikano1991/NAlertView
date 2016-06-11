@@ -5,7 +5,7 @@ It is inspired by the [CPAlertViewController](https://github.com/cp3hnu/CPAlertV
 
 ## Examples
 
-![](Screenshots/01.png) ![](Screenshots/02.png) ![](Screenshots/03.png)
+![](Screenshots/01.png =100x) ![](Screenshots/02.png =100x) ![](Screenshots/03.png =100x) ![](Screenshots/04.png =100x) ![](Screenshots/05.png =100x)
 
 ## Installation
 
@@ -89,6 +89,8 @@ NAlertView.showAlertInQueue(title: "Alert with completion block",
                                 }
 }
 ```
+
+The alert view will appear with a (very) fancy `pop` animation, if you seek to implement you own animation you can do so by overriding the `animateAlert()` method.
 
 ### Customizable properties
 	Here there is the list of all the properties than can be customized.
