@@ -5,9 +5,7 @@ It is inspired by the [CPAlertViewController](https://github.com/cp3hnu/CPAlertV
 
 ## Examples
 
-![](Screenshots/01.png)
-![](Screenshots/02.png)
-![](Screenshots/03.png)
+![](Screenshots/01.png) ![](Screenshots/02.png) ![](Screenshots/03.png)
 
 ## Installation
 
@@ -26,21 +24,24 @@ The usage of the Alert is very simple. First of all you need to configure how do
 ``` swift
 public class Theme {
     static func applyAlertTheme() {
-        GOGOAlert.titleFont               = Globals.font(Globals.GOGOFont.kelsonBold, size: 16)!
-        GOGOAlert.titleColor              = GOGOColor.blackCancelColor()
-        GOGOAlert.titleAlign              = NSTextAlignment.Left
-        GOGOAlert.messageFont             = Globals.font(Globals.GOGOFont.verdana, size: 14)!
-        GOGOAlert.messageColor            = GOGOColor.brownishGrey()
-        GOGOAlert.messageAlign            = NSTextAlignment.Left
-        GOGOAlert.buttonCornerRadius      = 3
-        GOGOAlert.buttonFont              = Globals.font(Globals.GOGOFont.verdana, size: 16)!
-        GOGOAlert.buttonDefaultTitleColor = GOGOColor.giaSunYellowColor()
-        GOGOAlert.buttonDefaultBGColor    = GOGOColor.tealBlue()
-        GOGOAlert.buttonAcceptTitleColor  = GOGOColor.tealBlue()
-        GOGOAlert.buttonAcceptBGColor     = GOGOColor.giaSunYellowColor()
-        GOGOAlert.buttonCancelTitleColor  = GOGOColor.giaDeepSeaBlueColor()
-        GOGOAlert.buttonCancelBGColor     = UIColor.clearColor()
-        GOGOAlert.buttonShadow            = 1
+        NAlertView.cornerRadius             = 4
+        NAlertView.titleFont                = UIFont.systemFontOfSize(22)
+        NAlertView.titleColor               = UIColor.blackColor()
+        NAlertView.titleAlign               = NSTextAlignment.Center
+        NAlertView.separationColor          = UIColor(red: 238.0/255.0, green: 242.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        NAlertView.messageFont              = UIFont.systemFontOfSize(16)
+        NAlertView.messageColor             = UIColor.blackColor()
+        NAlertView.messageAlign             = NSTextAlignment.Center
+        NAlertView.buttonFont               = UIFont.systemFontOfSize(16)
+        NAlertView.buttonDefaultTitleColor  = UIColor.whiteColor()
+        NAlertView.buttonAcceptTitleColor   = UIColor.whiteColor()
+        NAlertView.buttonCancelTitleColor   = UIColor.whiteColor()
+        NAlertView.buttonDefaultBGColor     = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+        NAlertView.buttonAcceptBGColor      = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+        NAlertView.buttonCancelBGColor      = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+        NAlertView.buttonHeight             = 50
+        NAlertView.buttonCornerRadius       = 0
+        NAlertView.buttonShadow             = 0
     }
 }
 ```
